@@ -5,7 +5,6 @@
 #fi
 
 echo "Starting Install..."
-d
 sudo apt-get clean
 sudo apt-get update
 sudo apt-get -y install vsftpd xboxdrv stella python-pip python-requests python-levenshtein libsdl1.2-dev bc gunicorn sqlite3
