@@ -5,7 +5,7 @@
 #fi
 
 echo "Starting Install..."
-
+d
 sudo apt-get clean
 sudo apt-get update
 sudo apt-get -y install vsftpd xboxdrv stella python-pip python-requests python-levenshtein libsdl1.2-dev bc gunicorn sqlite3
@@ -37,19 +37,14 @@ wget http://sheasilverman.com/rpi/raspbian/installer/vice_2.3.21-1_armhf.deb
 sudo dpkg -i vice_2.3.21-1_armhf.deb
 rm -rf vice_2.3.21-1_armhf.deb
 
-
-
-
-echo 'if [ "$DISPLAY" == "" ] && [ "$SSH_CLIENT" == "" ] && [ "$SSH_TTY" == "" ]; then' >> /home/pi/.profile
-
 if grep --quiet /home/pi/pimame/pimame-menu /home/pi/.profile; then
   echo "menu already exists, ignoring."
 else
-	echo 'cd /home/pi/pimame/pimame-menu/' >> /home/pi/.profile
-	echo 'python launchmenu.py' >> /home/pi/.profile
+  echo 'if [ "$DISPLAY" == "" ] && [ "$SSH_CLIENT" == "" ] && [ "$SSH_TTY" == "" ]; then' >> /home/pi/.profile
+  echo '  cd /home/pi/pimame/pimame-menu/' >> /home/pi/.profile
+  echo '  python launchmenu.py' >> /home/pi/.profile
+  echo 'fi' >> /home/pi/.profile
 fi
-
-echo 'fi' >> /home/pi/.profile
 
 sudo apt-get -y install supervisor
 sudo cp /home/pi/pimame/supervisor_scripts/file_watcher.conf /etc/supervisor/conf.d/file_watcher.conf
